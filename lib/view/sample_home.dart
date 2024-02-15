@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:using_sharedpreferences/services/local_storage_services.dart';
+import 'package:using_sharedpreferences/view/login_credintials.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -9,6 +11,18 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await LocalStorage().clearFunction();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UserCredential(),
+                    ));
+              },
+              icon: Icon(Icons.delete))
+        ],
         leading: IconButton(
             onPressed: () {
               exit(0);
